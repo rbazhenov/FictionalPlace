@@ -6,6 +6,7 @@ import javax.persistence.*;
  * Пиво.
  */
 @Entity
+@DiscriminatorValue(Beer.DRINK_KIND_DISCRIMINATOR)
 @Table(name = Beer.TABLE_NAME)
 public class Beer extends AbstractDrink {
 
@@ -13,6 +14,13 @@ public class Beer extends AbstractDrink {
      * Наименование таблицы хранения.
      */
     public static final String TABLE_NAME = "drink_beer";
+
+    /**
+     * Значение идентификатора, означающего, что хранимое значение - вид напитка.
+     *
+     * @see AbstractDrink.ColumnName#AD_CN_DISCRIMINATOR
+     */
+    public static final String DRINK_KIND_DISCRIMINATOR = "beer";
 
     /**
      * Идентификатор.

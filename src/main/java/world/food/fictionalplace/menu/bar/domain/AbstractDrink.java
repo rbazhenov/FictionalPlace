@@ -2,15 +2,19 @@ package world.food.fictionalplace.menu.bar.domain;
 
 import javax.persistence.*;
 
+import static javax.persistence.InheritanceType.JOINED;
+
 /**
  * Базовый класс для напитков.
  */
 @Entity
+@Inheritance(strategy = JOINED)
+@DiscriminatorColumn(name = AbstractDrink.ColumnName.AD_CN_DISCRIMINATOR, length = 32)
 @Table(name = AbstractDrink.TABLE_NAME)
 public abstract class AbstractDrink {
 
     /**
-     * Наименование таблицы.
+     * Наименование таблицы хранения.
      */
     public static final String TABLE_NAME = "drink_common";
     /**
@@ -72,6 +76,11 @@ public abstract class AbstractDrink {
      * Класс констант, содержащих наименования колонок {@link AbstractDrink#TABLE_NAME}.
      */
     static class ColumnName {
+
+        /**
+         * Колонка, в которой хранится идентификатор модели напитка.
+         */
+        public static final String AD_CN_DISCRIMINATOR = "dtype";
 
         /**
          * {@link AbstractDrink#id}.

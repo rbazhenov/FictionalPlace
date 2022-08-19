@@ -1,11 +1,14 @@
 package world.food.fictionalplace.menu.bar.domain;
 
+import world.food.fictionalplace.dictionary.domain.ColorDict;
+
 import javax.persistence.*;
 
 /**
  * Коктейл.
  */
 @Entity
+@DiscriminatorValue(Cocktail.DRINK_KIND_DISCRIMINATOR)
 @Table(name = Cocktail.TABLE_NAME)
 public class Cocktail extends AbstractDrink {
 
@@ -13,6 +16,13 @@ public class Cocktail extends AbstractDrink {
      * Наименование таблицы хранения.
      */
     public final static String TABLE_NAME = "drink_cocktail";
+
+    /**
+     * Значение идентификатора, означающего, что хранимое значение - вид напитка.
+     *
+     * @see AbstractDrink.ColumnName#AD_CN_DISCRIMINATOR
+     */
+    public static final String DRINK_KIND_DISCRIMINATOR = "cocktail";
 
     /**
      * Идентификатор.
@@ -25,8 +35,9 @@ public class Cocktail extends AbstractDrink {
     /**
      * Цвет.
      */
-    @Column(name = ColumnName.C_CN_COLOR)
-    private String color;
+    @ManyToOne
+    @JoinColumn(name = ColumnName.C_CN_COLOR)
+    private ColorDict color;
 
     public Long getId() {
         return id;
@@ -36,11 +47,11 @@ public class Cocktail extends AbstractDrink {
         this.id = id;
     }
 
-    public String getColor() {
+    public ColorDict getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(ColorDict color) {
         this.color = color;
     }
 
@@ -56,6 +67,6 @@ public class Cocktail extends AbstractDrink {
         /**
          * {@link Cocktail#color}.
          */
-        public static final String C_CN_COLOR = "color";
+        public static final String C_CN_COLOR = "color_id";
     }
 }

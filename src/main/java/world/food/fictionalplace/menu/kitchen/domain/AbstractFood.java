@@ -2,10 +2,14 @@ package world.food.fictionalplace.menu.kitchen.domain;
 
 import javax.persistence.*;
 
+import static javax.persistence.InheritanceType.JOINED;
+
 /**
- * Базовый класс для еды.
+ * Базовый класс для блюда.
  */
 @Entity
+@Inheritance(strategy = JOINED)
+@DiscriminatorColumn(name = AbstractFood.ColumnName.AF_CN_DISCRIMINATOR, length = 32)
 @Table(name = AbstractFood.TABLE_NAME)
 public abstract class AbstractFood {
 
@@ -74,6 +78,11 @@ public abstract class AbstractFood {
      * Класс констант, содержащих наименования колонок {@link AbstractFood#TABLE_NAME}.
      */
     static class ColumnName {
+
+        /**
+         * Колонка, в которой хранится идентификатор модели блюда.
+         */
+        public static final String AF_CN_DISCRIMINATOR = "ftype";
 
         /**
          * {@link AbstractFood#id}.
