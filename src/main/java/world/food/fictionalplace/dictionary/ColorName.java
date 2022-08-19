@@ -1,7 +1,7 @@
 package world.food.fictionalplace.dictionary;
 
 /**
- * Наименования цветов (оттенка).
+ * Наименования цветов (оттенка) {@link world.food.fictionalplace.dictionary.domain.ColorDict}.
  */
 //todo создать цвета в БД.
 public final class ColorName {

@@ -1,6 +1,9 @@
 package world.food.fictionalplace.menu.bar.domain;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * Пиво.
@@ -23,14 +26,6 @@ public class Beer extends AbstractDrink {
     public static final String DRINK_KIND_DISCRIMINATOR = "beer";
 
     /**
-     * Идентификатор.
-     */
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = ColumnName.B_CN_ID, nullable = false)
-    private Long id;
-
-    /**
      * Является ли фильтрованным.
      * <p/>
      * true - да, false - нет.
@@ -38,13 +33,6 @@ public class Beer extends AbstractDrink {
     @Column(name = ColumnName.B_CN_IS_FILTERED)
     private boolean isFiltered;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public boolean isFiltered() {
         return isFiltered;
@@ -58,11 +46,6 @@ public class Beer extends AbstractDrink {
      * Класс констант, содержащих наименования колонок {@link Beer#TABLE_NAME}.
      */
     static class ColumnName {
-        /**
-         * {@link Beer#id}.
-         */
-        public static final String B_CN_ID = "id";
-
         /**
          * {@link Beer#isFiltered}.
          */

@@ -1,6 +1,8 @@
 package world.food.fictionalplace.menu.kitchen.domain;
 
-import javax.persistence.*;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 @DiscriminatorValue(Soup.FOOD_KIND_DISCRIMINATOR)
@@ -20,29 +22,8 @@ public class Soup extends AbstractFood {
     public static final String FOOD_KIND_DISCRIMINATOR = "soup";
 
     /**
-     * Идентификатор.
-     */
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = ColumnName.S_CN_ID, nullable = false)
-    private Long id;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    /**
      * Класс констант, содержащих наименования колонок {@link Soup#TABLE_NAME}.
      */
     static class ColumnName {
-
-        /**
-         * {@link Soup#id}.
-         */
-        public static final String S_CN_ID = "id";
     }
 }
