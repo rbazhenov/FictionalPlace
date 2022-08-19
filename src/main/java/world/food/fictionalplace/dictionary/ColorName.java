@@ -3,6 +3,7 @@ package world.food.fictionalplace.dictionary;
 /**
  * Наименования цветов (оттенка).
  */
+//todo создать цвета в БД.
 public final class ColorName {
 
     /**

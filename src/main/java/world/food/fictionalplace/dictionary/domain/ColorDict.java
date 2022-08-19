@@ -3,7 +3,7 @@ package world.food.fictionalplace.dictionary.domain;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name = ColorDict.TABLE_NAME)
 public class ColorDict {
 
     /**
@@ -33,10 +33,18 @@ public class ColorDict {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     /**
      * Класс констант, содержащий наименования колонок {@link ColorDict#TABLE_NAME}.
      */
-    static class ColumnName{
+    static class ColumnName {
         /**
          * {@link ColorDict#id}
          */

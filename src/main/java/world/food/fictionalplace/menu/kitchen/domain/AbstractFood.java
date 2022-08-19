@@ -1,8 +1,5 @@
 package world.food.fictionalplace.menu.kitchen.domain;
 
-import world.food.fictionalplace.dictionary.DishOrder;
-import world.food.fictionalplace.menu.domain.AbstractItem;
-
 import javax.persistence.*;
 
 /**
@@ -10,43 +7,22 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = AbstractFood.TABLE_NAME)
-public abstract class AbstractFood extends AbstractItem {
+public abstract class AbstractFood {
 
     /**
      * Наименование таблицы хранения.
      */
     public static final String TABLE_NAME = "food_common";
-
     /**
-     * Класс констант, содержащих наименования колонок {@link AbstractFood#TABLE_NAME}.
+     * Название.
      */
-    static class ColumnName {
-
-        /**
-         * {@link AbstractFood#id}.
-         */
-        public static final String AF_CN_ID = "id";
-
-        /**
-         * {@link AbstractFood#isSpicy}.
-         */
-        public static final String AF_CN_IS_SPICY = "is_spicy";
-
-        /**
-         * {@link AbstractFood#dishOrder}.
-         */
-        public static final String AF_CN_DISH_ORDER = "dish_order";
-
-    }
-
+    @Column(name = ColumnName.AF_CN_NAME)
+    protected String name;
     /**
-     * Идентификатор.
+     * Цена.
      */
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = ColumnName.AF_CN_ID, nullable = false)
-    private Long id;
-
+    @Column(name = ColumnName.AF_CN_PRICE)
+    protected Double price;
     /**
      * Острота.
      * <p/>
@@ -54,12 +30,13 @@ public abstract class AbstractFood extends AbstractItem {
      */
     @Column(name = ColumnName.AF_CN_IS_SPICY)
     protected boolean isSpicy;
-
     /**
-     * Номер блюда.
+     * Идентификатор.
      */
-    @Column(name = ColumnName.AF_CN_DISH_ORDER)
-    protected DishOrder dishOrder;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = ColumnName.AF_CN_ID, nullable = false)
+    private Long id;
 
     public Long getId() {
         return id;
@@ -77,11 +54,46 @@ public abstract class AbstractFood extends AbstractItem {
         isSpicy = spicy;
     }
 
-    public DishOrder getDishOrder() {
-        return dishOrder;
+    public String getName() {
+        return name;
     }
 
-    public void setDishOrder(DishOrder dishOrder) {
-        this.dishOrder = dishOrder;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    /**
+     * Класс констант, содержащих наименования колонок {@link AbstractFood#TABLE_NAME}.
+     */
+    static class ColumnName {
+
+        /**
+         * {@link AbstractFood#id}.
+         */
+        public static final String AF_CN_ID = "id";
+
+        /**
+         * {@link AbstractFood#isSpicy}.
+         */
+        public static final String AF_CN_IS_SPICY = "is_spicy";
+
+        /**
+         * {@link AbstractFood#name}.
+         */
+        public static final String AF_CN_NAME = "name";
+
+        /**
+         * {@link AbstractFood#price}.
+         */
+        public static final String AF_CN_PRICE = "price";
+
     }
 }
